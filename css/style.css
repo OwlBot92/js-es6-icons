@@ -3,3 +3,67 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    font-family: sans-serif;
+}
+
+/* title style */
+.title-box{
+    padding: 20px;
+}
+.title-box h1{
+    font-size: 35px;
+    color: #29b1dd;
+}
+
+/* filter style */
+.filter-box{
+    padding: 20px;
+    background-color: #29b1dd;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+}
+
+
+/* CARDS CONTAINER */
+.cards-container{
+    background-color: #DDDDDD;
+    padding: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+
+.cards-container .card{
+    padding: 40px 0;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px darkgray;
+    width: calc((100% / 5) - 30px );
+    text-align: center;
+}
+
+.card .fas{
+    margin-bottom: 10px;
+    font-size: 50px;
+}
+
+.card h5{
+    text-transform: uppercase;
+}
+
+
+.orange{
+    color: orange;
+}
+.blue{
+    color: blue;
+}
+.purple{
+    color: purple;
+}

@@ -105,11 +105,68 @@ const colors = [
 
 
 /* 
-
 Milestones
 1 Partendo dalla seguente struttura dati , mostriamo in pagina tutte 
 le icone disponibili come da layout
 2 Coloriamo le icone per tipo
 3 Creiamo una select con i tipi di icone e usiamola per filtrare le icone
-
 */
+
+//creo una copia dell'array originale che contiene anche i colori per non modificare quello di partenza
+function colorify (arrayColor, array){
+    let iconsCopy = [];
+    for (const obj of array) {
+        if (obj.type == "animal") {
+            iconsCopy.push({...obj, color: arrayColor[0]});
+        }
+        else if (obj.type == "vegetable") {
+            iconsCopy.push({ ...obj, color: arrayColor[1]});
+        }
+        else{
+            iconsCopy.push({ ...obj, color: arrayColor[2]});
+        }
+    }
+    return iconsCopy;
+}
+//itero sul nuovo array e popolo la pagina html
+function populateHtml (array){
+    //prendo il div che devo popolare
+    const cardsContainer = $(".cards-container");
+    //itero sull'array degli oggetti (che contiene anche i colori)
+    for (const icon of array) {
+        //estrapolo le informazioni che mi servono per creare le mie cards
+        let {name, prefix, family, color} = icon;
+        //definisco tramite i backticks e i valori degli oggetti che aspetto avranno le cards nella pagina html
+        const iconaHtml = `
+            <div class="card">
+                <i class='${family} ${prefix}${name} ${color}'></i>
+                <h5>${name}</h5>
+            </div>`;
+
+        //aggiungo a cardsContainer
+        cardsContainer.append(iconaHtml);
+    }
+}
+//funzione che filtra l'array di colori in base alla scelta dell'utente
+function pickArray(array, currentChoice) {
+    if (currentChoice == "all") {
+        console.log(array);
+        return array;
+    }
+    const filteredArray = array.filter((obj) => {
+        return obj.type == currentChoice;
+    });
+    console.log(filteredArray);
+    return filteredArray;
+}
+//
+const coolorArray = colorify(colors, icons);
+populateHtml(coolorArray);
+const valoreSelect = $("#valore");
+const cardsContainer = $(".cards-container");
+valoreSelect.change(function () {
+    cardsContainer.html('');
+    const currentChoice = this.value;
+    const pickedArray = pickArray(coolorArray, currentChoice);
+    populateHtml(pickedArray);
+});
