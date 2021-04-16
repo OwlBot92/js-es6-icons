@@ -116,18 +116,22 @@ main();
 function colorify (arrayColor, array){
     let iconsCopy = [];
     for (const obj of array) {
-        if (obj.type == "animal") {
-            iconsCopy.push({...obj, color: arrayColor[0]});
-        }
-        else if (obj.type == "vegetable") {
-            iconsCopy.push({ ...obj, color: arrayColor[1]});
-        }
-        else{
-            iconsCopy.push({ ...obj, color: arrayColor[2]});
+        switch (obj.type) {
+            case "animal":
+                iconsCopy.push({ ...obj, color: arrayColor[0] });
+                break;
+            case "vegetable":
+                iconsCopy.push({ ...obj, color: arrayColor[1] });
+                break;
+            case "user":
+                iconsCopy.push({ ...obj, color: arrayColor[2] });
+                break;
         }
     }
     return iconsCopy;
 }
+
+
 //itero sul nuovo array
 function populateHtml (array){
     //prendo il div che devo popolare
