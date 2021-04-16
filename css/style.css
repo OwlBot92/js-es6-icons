@@ -30,21 +30,21 @@ body{
 /* CARDS CONTAINER */
 .cards-container{
     background-color: #DDDDDD;
-    padding: 20px;
-
+    padding: 20px 0 0 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    
     
 }
 
 .cards-container .card{
     padding: 40px 0;
+    margin-right: 20px;
     margin-bottom: 20px;
     background-color: white;
     border-radius: 15px;
-    box-shadow: 1px 1px 10px darkgray;
-    width: calc((100% / 5) - 30px );
+    box-shadow: 1px 1px 10px darkgrey;
+    width: calc((100% / 6) - 20px);
     text-align: center;
 }
 

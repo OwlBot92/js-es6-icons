@@ -128,10 +128,11 @@ function colorify (arrayColor, array){
     }
     return iconsCopy;
 }
-//itero sul nuovo array e popolo la pagina html
+//itero sul nuovo array
 function populateHtml (array){
     //prendo il div che devo popolare
     const cardsContainer = $(".cards-container");
+    cardsContainer.html('');
     //itero sull'array degli oggetti (che contiene anche i colori)
     for (const icon of array) {
         //estrapolo le informazioni che mi servono per creare le mie cards
@@ -148,7 +149,7 @@ function populateHtml (array){
     }
 }
 //funzione che filtra l'array di colori in base alla scelta dell'utente
-function pickArray(array, currentChoice) {
+function filtrify(array, currentChoice) {
     if (currentChoice == "all") {
         console.log(array);
         return array;
@@ -162,11 +163,13 @@ function pickArray(array, currentChoice) {
 //
 const coolorArray = colorify(colors, icons);
 populateHtml(coolorArray);
+//le option del select
 const valoreSelect = $("#valore");
-const cardsContainer = $(".cards-container");
+//quando cambia
 valoreSelect.change(function () {
-    cardsContainer.html('');
     const currentChoice = this.value;
-    const pickedArray = pickArray(coolorArray, currentChoice);
+    //filtra gli elementi nell array di partenza in base al select
+    const pickedArray = filtrify(coolorArray, currentChoice);
+    //funzione che popola la pagina HTML
     populateHtml(pickedArray);
 });
