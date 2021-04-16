@@ -1,3 +1,10 @@
+/*
+1 Partendo dalla seguente struttura dati , mostriamo in pagina tutte
+le icone disponibili come da layout
+2 Coloriamo le icone per tipo
+3 Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+*/
+
 const icons = [
     {
         name: 'cat',
@@ -103,14 +110,7 @@ const colors = [
     'purple'
 ];
 
-
-/* 
-Milestones
-1 Partendo dalla seguente struttura dati , mostriamo in pagina tutte 
-le icone disponibili come da layout
-2 Coloriamo le icone per tipo
-3 Creiamo una select con i tipi di icone e usiamola per filtrare le icone
-*/
+main();
 
 //creo una copia dell'array originale che contiene anche i colori per non modificare quello di partenza
 function colorify (arrayColor, array){
@@ -160,16 +160,20 @@ function filtrify(array, currentChoice) {
     console.log(filteredArray);
     return filteredArray;
 }
-//
-const coolorArray = colorify(colors, icons);
-populateHtml(coolorArray);
-//le option del select
-const valoreSelect = $("#valore");
-//quando cambia
-valoreSelect.change(function () {
-    const currentChoice = this.value;
-    //filtra gli elementi nell array di partenza in base al select
-    const pickedArray = filtrify(coolorArray, currentChoice);
-    //funzione che popola la pagina HTML
-    populateHtml(pickedArray);
-});
+//main
+function main() {
+    const coolorArray = colorify(colors, icons);
+    populateHtml(coolorArray);
+    //le option del select
+    const valoreSelect = $("#valore");
+    //quando cambia
+    valoreSelect.change(function () {
+        const currentChoice = this.value;
+        //filtra gli elementi nell array di partenza in base al select
+        const pickedArray = filtrify(coolorArray, currentChoice);
+        //funzione che popola la pagina HTML
+        populateHtml(pickedArray);
+    });
+}
+
+
